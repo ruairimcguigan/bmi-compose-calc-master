@@ -2,6 +2,7 @@ package com.bmi.compose.ui.widgets
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -12,19 +13,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.bmi.compose.theme.AppTheme
-import com.bmi.compose.theme.darkTextColor
-import com.bmi.compose.theme.foregroundColor
+import com.bmi.compose.theme.*
 import com.vhi.bmicomposeinnovation.R
 
 @Composable
 fun Toolbar(
     title: String,
-    navigationIcon: @Composable() (() -> Unit)? = null,
-    actions: @Composable() RowScope.() -> Unit = {},
-    toolbarBackground: Color = foregroundColor
+    navigationIcon: @Composable (() -> Unit)? = null,
+    actions: @Composable RowScope.() -> Unit = {},
+    toolbarBackground: Color = purple500
 ) {
     TopAppBar(
         title = {
@@ -32,12 +32,13 @@ fun Toolbar(
                 text = title,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                color = darkTextColor
+                color = backgroundColor
             )
         },
+        modifier = Modifier.preferredHeight(80.dp),
         navigationIcon = navigationIcon,
         actions = actions,
-        elevation = 0.dp,
+        elevation = 10.dp,
         backgroundColor = toolbarBackground
     )
 }

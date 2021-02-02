@@ -12,12 +12,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.theme.AppTheme
+import com.bmi.compose.theme.color4
+import com.bmi.compose.theme.color5
 import com.bmi.compose.ui.textStyle
 
 @Composable
 fun RoundedCard(
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colors.background,
+    color: Color = color5,
     elevation: Dp = 4.dp,
     content: @Composable() () -> Unit
 ) {

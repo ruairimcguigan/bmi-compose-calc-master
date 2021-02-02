@@ -27,6 +27,7 @@ import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.accentColor
+import com.bmi.compose.theme.color4
 import com.bmi.compose.ui.widgets.RoundIconButton
 import com.bmi.compose.ui.widgets.RoundedButton
 import com.bmi.compose.ui.widgets.RoundedCard
@@ -97,6 +98,7 @@ private fun Content() {
         val heightState = remember { mutableStateOf(170) }
         val weightState: MutableState<Int> = remember { mutableStateOf(62) }
         val ageState: MutableState<Int> = remember { mutableStateOf(20) }
+
         PickerView(
             modifier = Modifier
                 .weight(1f)
@@ -106,6 +108,7 @@ private fun Content() {
             weightState = weightState,
             ageState = ageState
         )
+
         RoundedButton(
             text = stringResource(id = R.string.begin),
             onClick = {
@@ -131,6 +134,7 @@ private fun PickerView(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
+
         HeightSelector(
             modifier = Modifier
                 .weight(1f)
@@ -177,6 +181,7 @@ private fun HeightSelector(
         ) { append(heightState.value.toString()) }
         append(stringResource(id = R.string.unit_cm))
     }
+
     RoundedCard(modifier = modifier) {
         Column(
             modifier = Modifier.fillMaxHeight(),

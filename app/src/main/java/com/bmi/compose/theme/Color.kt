@@ -32,12 +32,13 @@ val color1 = Color(0xFFD5D6D7)
 val color2 = Color(0xFFB9C3C9)
 val color3 = Color(0xFF2CA1BC)
 val color4 = Color(0xFF727789)
-val color5 = Color(0xFF4D5468)
+val color5 = Color(0xFFE4E3E3)
+val color6 = Color(0xFF4D5468)
 
 val whitishColor = color1
 val whitishVariantColor = color2
 val bluishColor = color3
-val darkVariantColor = color5
+val darkVariantColor = color6
 val darkColor = color4
 
 @Preview
