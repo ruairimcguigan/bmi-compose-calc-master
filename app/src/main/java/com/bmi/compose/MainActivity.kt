@@ -37,7 +37,6 @@ fun ComposeApp() {
     }
 }
 
-// todo optimize navigation process
 @Composable
 fun AppContent() {
     Crossfade(ComposeStatus.currentScreen) { screen ->
