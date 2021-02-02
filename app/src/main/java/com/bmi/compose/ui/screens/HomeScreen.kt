@@ -1,4 +1,4 @@
-package com.bmi.compose.ui
+package com.bmi.compose.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -27,14 +27,12 @@ import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.accentColor
-import com.bmi.compose.theme.color4
 import com.bmi.compose.ui.widgets.RoundIconButton
 import com.bmi.compose.ui.widgets.RoundedButton
 import com.bmi.compose.ui.widgets.RoundedCard
 import com.bmi.compose.ui.widgets.RoundedToggleButton
 import com.bmi.compose.util.BmiCalculator
 import com.vhi.bmicomposeinnovation.R
-import java.util.*
 
 @Composable
 fun HomeScreen(
@@ -116,7 +114,7 @@ private fun Content() {
                     heightState.value,
                     weightState.value
                 )
-                navigateTo(Screen.Result(bmi))
+                navigateTo(Screen.Result(bmi.result))
             },
             modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
         )

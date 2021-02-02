@@ -8,10 +8,10 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import com.bmi.compose.theme.AppTheme
-import com.bmi.compose.ui.HomeScreen
-import com.bmi.compose.ui.InfoScreen
-import com.bmi.compose.ui.ResultScreen
-import com.bmi.compose.ui.TipsScreen
+import com.bmi.compose.ui.screens.HomeScreen
+import com.bmi.compose.ui.screens.InfoScreen
+import com.bmi.compose.ui.screens.ResultScreen
+import com.bmi.compose.ui.screens.TipsScreen
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ fun AppContent() {
         Surface(color = MaterialTheme.colors.background) {
             when (screen) {
                 is Screen.Home -> HomeScreen()
-                is Screen.Info -> InfoScreen(bmi = screen.bmi)
+                is Screen.Info -> InfoScreen(bmi = screen.bmi.result)
                 is Screen.Result -> ResultScreen(bmi = screen.bmi)
                 is Screen.Tips -> TipsScreen()
             }

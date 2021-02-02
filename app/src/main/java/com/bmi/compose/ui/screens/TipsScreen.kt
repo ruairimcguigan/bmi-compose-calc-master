@@ -1,4 +1,4 @@
-package com.bmi.compose.ui
+package com.bmi.compose.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollableColumn

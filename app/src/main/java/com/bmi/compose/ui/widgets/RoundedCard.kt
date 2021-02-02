@@ -3,7 +3,6 @@ package com.bmi.compose.ui.widgets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,9 +11,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.theme.AppTheme
-import com.bmi.compose.theme.color4
 import com.bmi.compose.theme.color5
-import com.bmi.compose.ui.textStyle
+import com.bmi.compose.ui.screens.textStyle
 
 @Composable
 fun RoundedCard(
