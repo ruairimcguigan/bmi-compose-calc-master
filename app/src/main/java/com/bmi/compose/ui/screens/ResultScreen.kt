@@ -25,6 +25,7 @@ import com.bmi.compose.ui.widgets.Toolbar
 import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.AppTheme
+import com.bmi.compose.theme.NormalWeightColor
 import com.bmi.compose.theme.accentColor
 import com.bmi.compose.ui.widgets.RoundIconButton
 import com.bmi.compose.ui.widgets.RoundedButton
@@ -52,18 +53,17 @@ fun ResultScreen(
 @Composable
 private fun Content(viewState: ResultViewState) = when (viewState) {
     is NormalWeight -> {
+
         Column(
-            modifier = Modifier.padding(16.dp).fillMaxSize(),
+            modifier = Modifier.fillMaxSize().background(NormalWeightColor),
             verticalArrangement = Arrangement.SpaceAround
         ) {
-
-            val childModifier = Modifier.align(Alignment.CenterHorizontally)
 
             Card(
                 shape = CircleShape,
                 elevation = 4.dp,
                 backgroundColor = MaterialTheme.colors.background,
-                modifier = childModifier
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Card(
                     shape = CircleShape,
@@ -88,6 +88,7 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                     }
                 }
             }
+            // "You have 21.5 body weight"
             Text(
                 style = textStyle.copy(
                     fontSize = TextUnit.Sp(18)
@@ -101,12 +102,12 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                     }
                     append(" body weight!")
                 },
-                modifier = childModifier
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             RoundedButton(
                 text = "Details",
                 onClick = { navigateTo(Screen.Info(viewState.result)) },
-                modifier = childModifier.preferredWidth(120.dp),
+                modifier = Modifier.align(Alignment.CenterHorizontally).preferredWidth(120.dp),
                 backGroundColor = MaterialTheme.colors.background,
                 contentColor = Color.Black.copy(alpha = 0.8f)
             )

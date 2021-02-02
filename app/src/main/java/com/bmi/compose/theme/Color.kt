@@ -11,6 +11,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 
+//<color name="colorGray">#A0A0A0</color>
+//<color name="colorWhite"> #ffffff</color>
+//<color name="colorBlack"> #3d3d3d</color>
+//<color name="colorYellow">#F4D648</color>
+//<color name="colorGreen">#2abb9a</color>
+//<color name="colorRed">#F44B3E</color>
+//<color name="colorPrimary">@color/colorGreen</color>
+//<color name="colorPrimaryDark">#3d3d3d</color>
+//<color name="colorAccent">@color/colorGreen</color>
+//<color name="colorAccent2">@color/colorRed</color>
+
+val NormalWeightColor = Color(0xFF2ABB9A)
+
 val Red200 = Color(0xfff297a2)
 val Red300 = Color(0xffea6d7e)
 val Red700 = Color(0xffdd0d3c)
