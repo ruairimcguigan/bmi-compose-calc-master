@@ -16,10 +16,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.bmi.compose.theme.AppTheme
-import com.bmi.compose.theme.accentColor
-import com.bmi.compose.theme.backgroundColor
-import com.bmi.compose.theme.foregroundColor
+import com.bmi.compose.theme.*
 
 private val IconButtonSizeModifier = Modifier.preferredHeight(50.dp)
 
@@ -42,7 +39,11 @@ fun RoundedButton(
         ),
         elevation = ButtonConstants.defaultElevation(elevation)
     ) {
-        BasicText(text = text, style = TextStyle(fontSize = TextUnit.Companion.Sp(18)) )
+        BasicText(
+            text = text,
+            style = TextStyle(
+                color = backgroundColor,
+                fontSize = TextUnit.Companion.Sp(18)) )
     }
 }
 
@@ -62,10 +63,13 @@ fun RoundedToggleButton(
         colors = ButtonConstants.defaultButtonColors(
             backgroundColor = if (state.value) activeColor else inactiveColor,
             contentColor = if (state.value) foregroundColor else Color.Gray
-
         )
     ) {
-        BasicText(text = text, style = TextStyle(fontSize = TextUnit.Sp(18)) )
+        BasicText(
+            text = text,
+            style = TextStyle(
+                color = if (state.value) backgroundColor else accentColor,
+                fontSize = TextUnit.Sp(18)) )
     }
 }
 

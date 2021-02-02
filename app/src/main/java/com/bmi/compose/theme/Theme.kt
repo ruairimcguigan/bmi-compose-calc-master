@@ -15,15 +15,6 @@ private val LightThemeColors = lightColors(
     background = backgroundColor,
     onSecondary = foregroundColor,
     error = Red800
-
-    /* Copied from JetNews
-    primary = Red700,
-    primaryVariant = Red900,
-    onPrimary = Color.White,
-    secondary = Red700,
-    secondaryVariant = Red900,
-    onSecondary = Color.White,
-    error = Red800*/
 )
 
 private val DarkThemeColors = darkColors(

@@ -33,6 +33,7 @@ import com.bmi.compose.ui.widgets.RoundedCard
 import com.bmi.compose.ui.widgets.RoundedToggleButton
 import com.bmi.compose.util.BmiCalculator
 import com.vhi.bmicomposeinnovation.R
+import java.util.*
 
 @Composable
 fun HomeScreen(
@@ -42,7 +43,7 @@ fun HomeScreen(
         scaffoldState = scaffoldState,
         topBar = {
             Toolbar(
-                title = stringResource(R.string.app_name),
+                title = stringResource(id = R.string.app_name),
                 navigationIcon = {
                     RoundIconButton(
                         vectorAsset = Icons.Outlined.Notifications,
@@ -70,11 +71,13 @@ private fun Content() {
             modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
+
             val maleState = mutableStateOf(true)
             val femaleState = mutableStateOf(false)
+
             RoundedToggleButton(
                 state = maleState,
-                text = "Male",
+                text = stringResource(id = R.string.male),
                 onClick = {
                     maleState.value = true
                     femaleState.value = false
@@ -83,7 +86,7 @@ private fun Content() {
             )
             RoundedToggleButton(
                 state = femaleState,
-                text = "Female",
+                text = stringResource(id = R.string.female),
                 onClick = {
                     femaleState.value = true
                     maleState.value = false
@@ -104,7 +107,7 @@ private fun Content() {
             ageState = ageState
         )
         RoundedButton(
-            text = "Lets Begin",
+            text = stringResource(id = R.string.begin),
             onClick = {
                 val bmi = BmiCalculator(
                     heightState.value,
@@ -144,7 +147,7 @@ private fun PickerView(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             NumberPicker(
-                label = "Weight",
+                label = stringResource(id = R.string.lbl_weight),
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 8.dp)
@@ -152,7 +155,7 @@ private fun PickerView(
                 pickerState = weightState
             )
             NumberPicker(
-                label = "Age",
+                label = stringResource(id = R.string.lbl_age),
                 modifier = Modifier
                     .weight(1f)
                     .padding(start = 8.dp)
@@ -172,7 +175,7 @@ private fun HeightSelector(
         withStyle(
             style = SpanStyle(fontSize = TextUnit.Sp(32))
         ) { append(heightState.value.toString()) }
-        append(" cm")
+        append(stringResource(id = R.string.unit_cm))
     }
     RoundedCard(modifier = modifier) {
         Column(
@@ -181,8 +184,8 @@ private fun HeightSelector(
         ) {
 
             Text(
-                text = "Height",
-                modifier = Modifier.align(Alignment. CenterHorizontally),
+                text = stringResource(id = R.string.lbl_height),
+                modifier = Modifier.align(Alignment.CenterHorizontally),
                 style = LabelStyle
             )
             Slider(
@@ -194,7 +197,7 @@ private fun HeightSelector(
             )
             Text(
                 text = height,
-                modifier = Modifier.align(Alignment. CenterHorizontally),
+                modifier = Modifier.align(Alignment.CenterHorizontally),
                 style = textStyle
             )
         }
@@ -216,16 +219,16 @@ private fun NumberPicker(
             Text(
                 text = label,
                 style = LabelStyle,
-                modifier = Modifier.align(Alignment. CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Text(
                 text = pickerState.value.toString(),
                 style = ValueStyle,
-                modifier = Modifier.align(Alignment. CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.align(Alignment. CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 RoundIconButton(vectorAsset = Icons.Default.Add, onClick = {
                     if (pickerState.value < range.last) {

@@ -22,14 +22,12 @@ val purple500 = Color(0xFF6200EE)
 val purple700 = Color(0xFF3700B3)
 val teal200 = Color(0xFF03DAC5)
 
-// Referenced from https://github.com/alirzadev/BMI-Calculator/blob/master/lib/utilities/constants.dart
 val backgroundColor = Color(0xFFF0EEF3)
 val darkTextColor = Color(0xFF5B6275)
 val lightTextColor = Color.Gray
 val foregroundColor = Color(0xFFF0EEF3)
-val accentColor = Color(0xFF59CAE2)
+val accentColor = Color(0xFF167690)
 
-// Palette colors referenced from https://dribbble.com/shots/11368106-BMI-Calculator-App-Neumorphism
 val color1 = Color(0xFFD5D6D7)
 val color2 = Color(0xFFB9C3C9)
 val color3 = Color(0xFF2CA1BC)

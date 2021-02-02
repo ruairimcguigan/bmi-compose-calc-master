@@ -1,7 +1,15 @@
 <resources>
-    <string name="app_name">BMI Compose Calculator</string>
+    <string name="app_name">BMI calculator</string>
     <string name="health_tips">Health Tips</string>
     <string name="bmi_results">BMI Results</string>
     <string name="bmi_info">BMI Info</string>
+    <string name="your_bmi">Your BMI</string>
     <string name="about_app">About App</string>
+    <string name="male">MALE</string>
+    <string name="female">FEMALE</string>
+    <string name="begin">LET\'S BEGIN</string>
+    <string name="lbl_weight">Weight</string>
+    <string name="lbl_age">Age</string>
+    <string name="unit_cm">cm</string>
+    <string name="lbl_height">Height</string>
 </resources>
