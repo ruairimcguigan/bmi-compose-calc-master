@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,15 +25,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.bmi.compose.ui.widgets.Toolbar
 import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.accentColor
-import com.bmi.compose.ui.widgets.RoundIconButton
-import com.bmi.compose.ui.widgets.RoundedButton
-import com.bmi.compose.ui.widgets.RoundedCard
-import com.bmi.compose.ui.widgets.RoundedToggleButton
+import com.bmi.compose.ui.widgets.*
 import com.bmi.compose.util.BmiCalculator
 import com.vhi.bmicomposeinnovation.R
 

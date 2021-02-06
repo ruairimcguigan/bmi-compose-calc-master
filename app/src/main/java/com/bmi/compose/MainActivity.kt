@@ -6,6 +6,7 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -58,7 +59,13 @@ fun AppContent() {
                     toolbar = {
                         ResultToolbar(
                             title = stringResource(R.string.normal_top_bar_result),
-                            color = NormalWeightColor
+                            color = NormalWeightColor,
+                            navigationIcon = {
+                                RoundIconButton(
+                                    vectorAsset = Icons.Outlined.Notifications,
+                                    onClick = { navigateTo(Screen.Tips) }
+                                )
+                            },
 
                         )
                     }

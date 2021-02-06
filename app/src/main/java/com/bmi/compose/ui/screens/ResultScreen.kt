@@ -6,9 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,17 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
-import com.bmi.compose.ui.widgets.Toolbar
 import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
-import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.NormalWeightColor
 import com.bmi.compose.theme.accentColor
 import com.bmi.compose.theme.foregroundColor
-import com.bmi.compose.ui.widgets.RoundIconButton
 import com.bmi.compose.ui.widgets.RoundedButton
-import com.bmi.compose.util.BmiCalculator
 import com.bmi.compose.util.BmiCalculator.ResultViewState
 import com.bmi.compose.util.BmiCalculator.ResultViewState.*
 import com.vhi.bmicomposeinnovation.R
