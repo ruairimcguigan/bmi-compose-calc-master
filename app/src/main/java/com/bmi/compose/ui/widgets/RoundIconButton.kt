@@ -19,7 +19,6 @@ import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.accentColor
 
-private val RippleRadius = 24.dp
 private val IconButtonSizeModifier = Modifier.preferredSize(40.dp)
 
 @Composable

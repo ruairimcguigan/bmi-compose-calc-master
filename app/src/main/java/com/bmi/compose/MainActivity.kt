@@ -11,6 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.bmi.compose.Screen.Home
+import com.bmi.compose.Screen.Info
+import com.bmi.compose.Screen.Result
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.NormalWeightColor
 import com.bmi.compose.ui.screens.*
@@ -18,6 +21,7 @@ import com.bmi.compose.ui.widgets.RoundIconButton
 import com.vhi.bmicomposeinnovation.R
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (ComposeStatus.currentScreen == Screen.Home) {
+        if (ComposeStatus.currentScreen == Home) {
             super.onBackPressed()
         }
     }
@@ -46,19 +50,18 @@ fun AppContent() {
     Crossfade(ComposeStatus.currentScreen) { screen ->
         Surface(color = MaterialTheme.colors.background) {
             when (screen) {
-                is Screen.Home -> HomeScreen()
-                is Screen.Info -> InfoScreen(bmi = screen.bmi.result)
-                is Screen.Result -> ResultScreen(
+                is Home -> HomeScreen()
+                is Info -> InfoScreen(bmi = screen.bmi.result)
+                is Result -> ResultScreen(
                     bmi = screen.bmi,
                     toolbar = {
                         VhiToolbar(
-                            title =
-                            stringResource(R.string.normal_top_bar_result),
+                            title = stringResource(R.string.normal_top_bar_result),
                             color = NormalWeightColor,
                             navigationIcon = {
                                 RoundIconButton(
                                     vectorAsset = Icons.Outlined.ArrowBack,
-                                    onClick = { navigateTo(Screen.Home) }
+                                    onClick = { navigateTo(Home) }
                                 )
                             },
                             elevation = 10.dp
