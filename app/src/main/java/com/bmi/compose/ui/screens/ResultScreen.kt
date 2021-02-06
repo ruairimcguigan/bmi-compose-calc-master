@@ -64,34 +64,6 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
         ) {
 
             Card(
-                elevation = 0.dp,
-                backgroundColor = NormalWeightColor,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            ) {
-                BasicText(
-
-                    text = annotatedString {
-                        append(stringResource(R.string.your_bmi_prepend))
-                        withStyle(
-                            style = SpanStyle(
-                                color = foregroundColor,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = TextUnit.Sp(32)
-                            )
-                        ) {
-                            append(viewState.result.bmiString)
-                        }
-                    },
-
-                    style = TextStyle(
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.Black.copy(alpha = 0.6f),
-                        fontSize = TextUnit.Sp(32)
-                    )
-                )
-            }
-
-            Card(
                 shape = CircleShape,
                 elevation = 4.dp,
                 backgroundColor = MaterialTheme.colors.background,
@@ -120,15 +92,42 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                 }
             }
 
-            BasicText(
-                text = stringResource(R.string.normal_result_weight),
-                style = TextStyle(
-                    fontWeight = FontWeight.SemiBold,
-                    color = foregroundColor,
-                    fontSize = TextUnit.Sp(28),
-                ),
+            Card(
+                elevation = 0.dp,
+                backgroundColor = NormalWeightColor,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
+            ) {
+                BasicText(
+                    text = annotatedString {
+                        append(stringResource(R.string.your_bmi_prepend))
+                        withStyle(
+                            style = SpanStyle(
+                                color = foregroundColor,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = TextUnit.Sp(32)
+                            )
+                        ) {
+                            append(" " + viewState.result.bmiString)
+                        }
+                    },
+
+                    style = TextStyle(
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.Black.copy(alpha = 0.6f),
+                        fontSize = TextUnit.Sp(32)
+                    )
+                )
+            }
+
+//            BasicText(
+//                text = stringResource(R.string.normal_result_weight),
+//                style = TextStyle(
+//                    fontWeight = FontWeight.SemiBold,
+//                    color = foregroundColor,
+//                    fontSize = TextUnit.Sp(28),
+//                ),
+//                modifier = Modifier.align(Alignment.CenterHorizontally)
+//            )
 
             Column(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
