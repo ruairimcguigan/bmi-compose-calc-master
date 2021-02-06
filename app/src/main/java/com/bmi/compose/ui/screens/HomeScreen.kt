@@ -51,7 +51,8 @@ fun HomeScreen(
                 },
                 actions = {
                     RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { })
-                }
+                },
+                elevation = 10.dp
             )
         },
         bodyContent = {

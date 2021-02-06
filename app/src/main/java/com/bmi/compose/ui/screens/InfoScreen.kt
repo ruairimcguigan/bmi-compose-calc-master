@@ -52,7 +52,8 @@ fun InfoScreen(
                         onClick = { navigateTo(Screen.Result(bmi)) }
                     )
                 },
-                actions = { RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { }) }
+                actions = { RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { }) },
+                elevation = 10.dp
             )
         },
         bodyContent = { Content(bmi) }

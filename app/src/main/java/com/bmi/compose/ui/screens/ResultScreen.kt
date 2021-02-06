@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
@@ -43,20 +42,12 @@ import com.vhi.bmicomposeinnovation.R
 @Composable
 fun ResultScreen(
     scaffoldState: ScaffoldState = rememberScaffoldState(),
+    toolbar: @Composable () -> Unit,
     bmi: ResultViewState
 ) {
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = {
-            Toolbar(
-                title = stringResource(R.string.bmi_results),
-                navigationIcon = {
-                    RoundIconButton(
-                        vectorAsset = Icons.Outlined.ArrowBack,
-                        onClick = { navigateTo(Screen.Home) })
-                },
-                actions = { RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { }) })
-        },
+        topBar = toolbar,
         bodyContent = { Content(bmi) }
     )
 }
@@ -66,12 +57,13 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
     is NormalWeight -> {
 
         Column(
-            modifier = Modifier.fillMaxSize().background(NormalWeightColor),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(NormalWeightColor),
             verticalArrangement = Arrangement.SpaceAround
         ) {
 
             Card(
-
                 elevation = 0.dp,
                 backgroundColor = NormalWeightColor,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -120,7 +112,9 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                         Image(
                             imageResource(id = R.drawable.correct_weight),
                             contentScale = ContentScale.Inside,
-                            modifier = Modifier.fillMaxSize().padding(8.dp)
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(8.dp)
                         )
                     }
                 }
@@ -147,7 +141,9 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                         color = foregroundColor,
                         fontSize = TextUnit.Sp(18),
                     ),
-                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(16.dp)
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(16.dp)
                 )
 
                 RowAdvice(
@@ -168,7 +164,9 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
             RoundedButton(
                 text = stringResource(R.string.result_more_info),
                 onClick = { navigateTo(Screen.Info(viewState.result)) },
-                modifier = Modifier.align(Alignment.CenterHorizontally).preferredWidth(120.dp),
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .preferredWidth(120.dp),
                 backGroundColor = MaterialTheme.colors.background,
                 contentColor = Color.Black.copy(alpha = 0.8f)
             )
@@ -197,10 +195,10 @@ fun RowAdvice(resId: Int, advice: String) {
     }
 }
 
-@Preview
-@Composable
-private fun ScreenPreview() {
-    AppTheme {
-        ResultScreen(bmi = Preview(BmiCalculator(height = 202, weight = 62)))
-    }
-}
+//@Preview
+//@Composable
+//private fun ScreenPreview() {
+//    AppTheme {
+//        ResultScreen(bmi = Preview(BmiCalculator(height = 202, weight = 62)))
+//    }
+//}

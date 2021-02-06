@@ -52,7 +52,8 @@ fun TipsScreen(
                 },
                 actions = {
                     RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { })
-                }
+                },
+                elevation = 10.dp
             )
         },
         bodyContent = {

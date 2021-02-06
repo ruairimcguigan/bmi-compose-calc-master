@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.theme.AppTheme
@@ -23,6 +24,8 @@ import com.vhi.bmicomposeinnovation.R
 @Composable
 fun Toolbar(
     title: String,
+    color: Color = purple500,
+    elevation: Dp,
     navigationIcon: @Composable (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
     toolbarBackground: Color = purple500
@@ -33,13 +36,13 @@ fun Toolbar(
                 text = title,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                color = backgroundColor
+                color = color
             )
         },
         modifier = Modifier.preferredHeight(80.dp),
         navigationIcon = navigationIcon,
         actions = actions,
-        elevation = 10.dp,
+        elevation = elevation,
         backgroundColor = toolbarBackground
     )
 }
@@ -48,7 +51,8 @@ fun Toolbar(
 @Composable
 fun ToolbarPreview() {
     AppTheme {
-        Toolbar(title = stringResource(R.string.app_name),
+        Toolbar(
+            title = stringResource(R.string.app_name),
             navigationIcon = {
                 RoundIconButton(
                     vectorAsset = Icons.Outlined.Notifications,
@@ -56,7 +60,8 @@ fun ToolbarPreview() {
             },
             actions = {
                 RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { })
-            })
+            }, elevation = 10.dp
+        )
     }
 }
 
