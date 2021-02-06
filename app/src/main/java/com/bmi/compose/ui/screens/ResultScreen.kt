@@ -6,11 +6,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.EmojiObjects
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ContentScale.Companion.Fit
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -26,7 +29,9 @@ import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.NormalWeightColor
 import com.bmi.compose.theme.accentColor
 import com.bmi.compose.theme.foregroundColor
+import com.bmi.compose.ui.widgets.RoundIconButton
 import com.bmi.compose.ui.widgets.RoundedButton
+import com.bmi.compose.ui.widgets.Toolbar
 import com.bmi.compose.util.BmiCalculator.ResultViewState
 import com.bmi.compose.util.BmiCalculator.ResultViewState.*
 import com.vhi.bmicomposeinnovation.R
@@ -49,9 +54,7 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
     is NormalWeight -> {
 
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(NormalWeightColor),
+            modifier = Modifier.fillMaxSize().background(NormalWeightColor),
             verticalArrangement = Arrangement.SpaceAround
         ) {
 
@@ -76,9 +79,7 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                         Image(
                             imageResource(id = R.drawable.correct_weight),
                             contentScale = ContentScale.Inside,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(8.dp)
+                            modifier = Modifier.fillMaxSize().padding(8.dp)
                         )
                     }
                 }
@@ -157,7 +158,7 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
     }
     is Overweight -> {
     }
-    is ResultViewState.Preview -> {
+    is Preview -> {
     }
 }
 
@@ -165,21 +166,25 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
 fun RowAdvice(resId: Int, advice: String) {
     Row(
         horizontalArrangement = Arrangement.SpaceAround,
-        modifier = Modifier.padding(8.dp)
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(start = 24.dp, top = 6.dp, bottom = 6.dp)
     ) {
-        Image(
-            vectorResource(id = resId),
-            contentScale = ContentScale.Fit
-        )
-        Text(advice)
+        Image(vectorResource(resId), contentScale = Fit)
 
+        Text(modifier = Modifier.padding(start = 12.dp), text = advice)
     }
 }
 
-//@Preview
-//@Composable
-//private fun ScreenPreview() {
-//    AppTheme {
-//        ResultScreen(bmi = Preview(BmiCalculator(height = 202, weight = 62)))
-//    }
-//}
+@Composable
+fun ResultToolbar(
+    title: String = "",
+    color: Color = Color.Black,
+    navigationIcon: @Composable (() -> Unit)? = null
+) = Toolbar(
+    title = title,
+    color = Color.White,
+    elevation = 0.dp,
+    toolbarBackground = color,
+    navigationIcon = navigationIcon,
+    actions = { RoundIconButton(vectorAsset = Icons.Outlined.EmojiObjects, onClick = { navigateTo(Screen.Tips)}) }
+)

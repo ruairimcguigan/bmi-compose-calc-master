@@ -17,10 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.NormalWeightColor
-import com.bmi.compose.ui.screens.HomeScreen
-import com.bmi.compose.ui.screens.InfoScreen
-import com.bmi.compose.ui.screens.ResultScreen
-import com.bmi.compose.ui.screens.TipsScreen
+import com.bmi.compose.ui.screens.*
 import com.bmi.compose.ui.widgets.RoundIconButton
 import com.bmi.compose.ui.widgets.Toolbar
 import com.vhi.bmicomposeinnovation.R
@@ -77,20 +74,6 @@ fun AppContent() {
         }
     }
 }
-
-@Composable
-fun ResultToolbar(
-    title: String = "",
-    color: Color = Color.Black,
-    navigationIcon: @Composable (() -> Unit)? = null
-) = Toolbar(
-    title = title,
-    color = Color.White,
-    elevation = 0.dp,
-    toolbarBackground = color,
-    navigationIcon = navigationIcon,
-    actions = { RoundIconButton(vectorAsset = Icons.Outlined.EmojiObjects, onClick = { navigateTo(Screen.Tips)}) }
-)
 
 
 
