@@ -59,15 +59,11 @@ fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffol
 
 @Composable
 private fun Content() = Column(
-    modifier = Modifier
-        .padding(16.dp)
-        .fillMaxSize(),
+    modifier = Modifier.padding(16.dp).fillMaxSize(),
     verticalArrangement = SpaceAround
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 8.dp),
+        modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
         horizontalArrangement = SpaceEvenly
     ) {
 
@@ -81,9 +77,7 @@ private fun Content() = Column(
                 maleState.value = true
                 femaleState.value = false
             },
-            modifier = Modifier
-                .padding(end = 8.dp)
-                .weight(1f)
+            modifier = Modifier.padding(end = 8.dp).weight(1f)
         )
         RoundedToggleButton(
             state = femaleState,
@@ -92,9 +86,7 @@ private fun Content() = Column(
                 femaleState.value = true
                 maleState.value = false
             },
-            modifier = Modifier
-                .padding(start = 8.dp)
-                .weight(1f)
+            modifier = Modifier.padding(start = 8.dp).weight(1f)
         )
     }
 
@@ -103,10 +95,7 @@ private fun Content() = Column(
     val ageState: MutableState<Int> = remember { mutableStateOf(20) }
 
     PickerView(
-        modifier = Modifier
-            .weight(1f)
-            .fillMaxWidth()
-            .padding(top = 16.dp),
+        modifier = Modifier.weight(1f).fillMaxWidth().padding(top = 16.dp),
         heightState = heightState,
         weightState = weightState,
         ageState = ageState
@@ -121,9 +110,7 @@ private fun Content() = Column(
             )
             navigateTo(Screen.Result(bmi.result))
         },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 16.dp)
+        modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
     )
 }
 
@@ -142,8 +129,7 @@ private fun PickerView(
             .weight(1f)
             .align(CenterHorizontally)
             .padding(bottom = 8.dp)
-            .fillMaxHeight(),
-        heightState = heightState
+            .fillMaxHeight(), heightState = heightState
     )
     Row(
         modifier = Modifier
