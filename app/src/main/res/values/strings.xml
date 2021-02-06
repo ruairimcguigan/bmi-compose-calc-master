@@ -11,6 +11,8 @@
     <string name="lbl_weight">Weight</string>
     <string name="lbl_age">Age</string>
     <string name="unit_cm">cm</string>
+    <string name="unit_weight">Kg</string>
+    <string name="unit_age">years</string>
     <string name="lbl_height">Height</string>
     <string name="advice_stay_active">Stay active</string>
     <string name="advice_healthy_diet">Choose a healthy diet</string>

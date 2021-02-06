@@ -22,6 +22,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.annotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.bmi.compose.Screen
@@ -121,7 +122,7 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                     style = TextStyle(
                         fontWeight = FontWeight.Medium,
                         color = foregroundColor,
-                        fontSize = TextUnit.Sp(18),
+                        fontSize = TextUnit.Sp(22),
                     ),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
@@ -176,14 +177,15 @@ fun RowAdvice(resId: Int, advice: String) {
 }
 
 @Composable
-fun ResultToolbar(
+fun VhiToolbar(
     title: String = "",
     color: Color = Color.Black,
+    elevation: Dp,
     navigationIcon: @Composable (() -> Unit)? = null
 ) = Toolbar(
     title = title,
     color = Color.White,
-    elevation = 0.dp,
+    elevation = elevation,
     toolbarBackground = color,
     navigationIcon = navigationIcon,
     actions = { RoundIconButton(vectorAsset = Icons.Outlined.EmojiObjects, onClick = { navigateTo(Screen.Tips)}) }

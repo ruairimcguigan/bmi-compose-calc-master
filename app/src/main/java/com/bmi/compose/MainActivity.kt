@@ -7,11 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.EmojiObjects
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -19,7 +15,6 @@ import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.NormalWeightColor
 import com.bmi.compose.ui.screens.*
 import com.bmi.compose.ui.widgets.RoundIconButton
-import com.bmi.compose.ui.widgets.Toolbar
 import com.vhi.bmicomposeinnovation.R
 
 class MainActivity : AppCompatActivity() {
@@ -56,8 +51,9 @@ fun AppContent() {
                 is Screen.Result -> ResultScreen(
                     bmi = screen.bmi,
                     toolbar = {
-                        ResultToolbar(
-                            title = stringResource(R.string.normal_top_bar_result),
+                        VhiToolbar(
+                            title =
+                            stringResource(R.string.normal_top_bar_result),
                             color = NormalWeightColor,
                             navigationIcon = {
                                 RoundIconButton(
@@ -65,7 +61,7 @@ fun AppContent() {
                                     onClick = { navigateTo(Screen.Home) }
                                 )
                             },
-
+                            elevation = 10.dp
                         )
                     }
                 )

@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -29,6 +28,8 @@ import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.accentColor
+import com.bmi.compose.ui.screens.PersonalDetails.Age
+import com.bmi.compose.ui.screens.PersonalDetails.Weight
 import com.bmi.compose.ui.widgets.*
 import com.bmi.compose.util.BmiCalculator
 import com.vhi.bmicomposeinnovation.R
@@ -37,28 +38,45 @@ import com.vhi.bmicomposeinnovation.R
 fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffold(
     scaffoldState = scaffoldState,
     topBar = {
-        Toolbar(
-            title = stringResource(id = R.string.app_name),
+        VhiToolbar(
+            title = "BMI",
+            color = accentColor,
+            elevation = 10.dp,
+
             navigationIcon = {
                 RoundIconButton(
                     vectorAsset = Icons.Outlined.Notifications,
                     onClick = { navigateTo(Screen.Tips) }
                 )
             },
-            actions = { RoundIconButton(Icons.Outlined.Person, onClick = { }) },
-            elevation = 10.dp
         )
+
+//        Toolbar(
+//            title = stringResource(id = R.string.app_name),
+//            navigationIcon = {
+//                RoundIconButton(
+//                    vectorAsset = Icons.Outlined.Notifications,
+//                    onClick = { navigateTo(Screen.Tips) }
+//                )
+//            },
+//            actions = { RoundIconButton(Icons.Outlined.Person, onClick = { }) },
+//            elevation = 10.dp
+//        )
     },
     bodyContent = { Content() }
 )
 
 @Composable
 private fun Content() = Column(
-    modifier = Modifier.padding(16.dp).fillMaxSize(),
+    modifier = Modifier
+        .padding(16.dp)
+        .fillMaxSize(),
     verticalArrangement = SpaceAround
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 8.dp),
         horizontalArrangement = SpaceEvenly
     ) {
 
@@ -72,7 +90,9 @@ private fun Content() = Column(
                 maleState.value = true
                 femaleState.value = false
             },
-            modifier = Modifier.padding(end = 8.dp).weight(1f)
+            modifier = Modifier
+                .padding(end = 8.dp)
+                .weight(1f)
         )
         RoundedToggleButton(
             state = femaleState,
@@ -81,7 +101,9 @@ private fun Content() = Column(
                 femaleState.value = true
                 maleState.value = false
             },
-            modifier = Modifier.padding(start = 8.dp).weight(1f)
+            modifier = Modifier
+                .padding(start = 8.dp)
+                .weight(1f)
         )
     }
 
@@ -90,7 +112,10 @@ private fun Content() = Column(
     val ageState: MutableState<Int> = remember { mutableStateOf(20) }
 
     PickerView(
-        modifier = Modifier.weight(1f).fillMaxWidth().padding(top = 16.dp),
+        modifier = Modifier
+            .weight(1f)
+            .fillMaxWidth()
+            .padding(top = 16.dp),
         heightState = heightState,
         weightState = weightState,
         ageState = ageState
@@ -105,7 +130,9 @@ private fun Content() = Column(
             )
             navigateTo(Screen.Result(bmi.result))
         },
-        modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp)
     )
 }
 
@@ -134,6 +161,7 @@ private fun PickerView(
         horizontalArrangement = SpaceEvenly
     ) {
         NumberPicker(
+            type = Weight,
             label = stringResource(id = R.string.lbl_weight),
             modifier = Modifier
                 .weight(1f)
@@ -142,6 +170,7 @@ private fun PickerView(
             pickerState = weightState
         )
         NumberPicker(
+            type = Age,
             label = stringResource(id = R.string.lbl_age),
             modifier = Modifier
                 .weight(1f)
@@ -195,6 +224,7 @@ private fun HeightSelector(
 
 @Composable
 private fun NumberPicker(
+    type: PersonalDetails,
     label: String,
     modifier: Modifier = Modifier,
     pickerState: MutableState<Int>,
@@ -210,7 +240,10 @@ private fun NumberPicker(
             modifier = Modifier.align(CenterHorizontally)
         )
         Text(
-            text = pickerState.value.toString(),
+            text = when(type){
+                is Weight-> pickerState.value.toString() + stringResource(id = R.string.unit_weight)
+                is Age -> pickerState.value.toString() + stringResource(id = R.string.unit_age)
+            },
             style = ValueStyle,
             modifier = Modifier.align(CenterHorizontally)
         )
@@ -230,6 +263,11 @@ private fun NumberPicker(
             })
         }
     }
+}
+
+sealed class PersonalDetails {
+    object Weight: PersonalDetails()
+    object Age: PersonalDetails()
 }
 
 @Preview
