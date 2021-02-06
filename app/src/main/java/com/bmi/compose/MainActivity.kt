@@ -7,6 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.EmojiObjects
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
@@ -88,7 +89,7 @@ fun ResultToolbar(
     elevation = 0.dp,
     toolbarBackground = color,
     navigationIcon = navigationIcon,
-    actions = { RoundIconButton(vectorAsset = Icons.Outlined.Notifications, onClick = { navigateTo(Screen.Tips)}) }
+    actions = { RoundIconButton(vectorAsset = Icons.Outlined.EmojiObjects, onClick = { navigateTo(Screen.Tips)}) }
 )
 
 
