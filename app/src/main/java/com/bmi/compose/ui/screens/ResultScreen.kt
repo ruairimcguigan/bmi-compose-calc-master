@@ -119,16 +119,6 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
                 )
             }
 
-//            BasicText(
-//                text = stringResource(R.string.normal_result_weight),
-//                style = TextStyle(
-//                    fontWeight = FontWeight.SemiBold,
-//                    color = foregroundColor,
-//                    fontSize = TextUnit.Sp(28),
-//                ),
-//                modifier = Modifier.align(Alignment.CenterHorizontally)
-//            )
-
             Column(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {

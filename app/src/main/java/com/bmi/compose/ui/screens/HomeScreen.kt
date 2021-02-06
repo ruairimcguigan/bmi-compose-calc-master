@@ -35,91 +35,91 @@ import com.bmi.compose.util.BmiCalculator
 import com.vhi.bmicomposeinnovation.R
 
 @Composable
-fun HomeScreen(
-    scaffoldState: ScaffoldState = rememberScaffoldState()
-) {
-    Scaffold(
-        scaffoldState = scaffoldState,
-        topBar = {
-            Toolbar(
-                title = stringResource(id = R.string.app_name),
-                navigationIcon = {
-                    RoundIconButton(
-                        vectorAsset = Icons.Outlined.Notifications,
-                        onClick = { navigateTo(Screen.Tips) }
-                    )
-                },
-                actions = {
-                    RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { })
-                },
-                elevation = 10.dp
-            )
-        },
-        bodyContent = {
-            Content()
-        }
-    )
-}
+fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffold(
+    scaffoldState = scaffoldState,
+    topBar = {
+        Toolbar(
+            title = stringResource(id = R.string.app_name),
+            navigationIcon = {
+                RoundIconButton(
+                    vectorAsset = Icons.Outlined.Notifications,
+                    onClick = { navigateTo(Screen.Tips) }
+                )
+            },
+            actions = { RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { }) },
+            elevation = 10.dp
+        )
+    },
+    bodyContent = { Content() }
+)
 
 @Composable
-private fun Content() {
-    Column(
-        modifier = Modifier.padding(16.dp).fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceAround
+private fun Content() = Column(
+    modifier = Modifier
+        .padding(16.dp)
+        .fillMaxSize(),
+    verticalArrangement = Arrangement.SpaceAround
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 8.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
 
-            val maleState = mutableStateOf(true)
-            val femaleState = mutableStateOf(false)
+        val maleState = mutableStateOf(true)
+        val femaleState = mutableStateOf(false)
 
-            RoundedToggleButton(
-                state = maleState,
-                text = stringResource(id = R.string.male),
-                onClick = {
-                    maleState.value = true
-                    femaleState.value = false
-                },
-                modifier = Modifier.padding(end = 8.dp).weight(1f)
-            )
-            RoundedToggleButton(
-                state = femaleState,
-                text = stringResource(id = R.string.female),
-                onClick = {
-                    femaleState.value = true
-                    maleState.value = false
-                },
-                modifier = Modifier.padding(start = 8.dp).weight(1f)
-            )
-        }
-        val heightState = remember { mutableStateOf(170) }
-        val weightState: MutableState<Int> = remember { mutableStateOf(62) }
-        val ageState: MutableState<Int> = remember { mutableStateOf(20) }
-
-        PickerView(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            heightState = heightState,
-            weightState = weightState,
-            ageState = ageState
-        )
-
-        RoundedButton(
-            text = stringResource(id = R.string.begin),
+        RoundedToggleButton(
+            state = maleState,
+            text = stringResource(id = R.string.male),
             onClick = {
-                val bmi = BmiCalculator(
-                    heightState.value,
-                    weightState.value
-                )
-                navigateTo(Screen.Result(bmi.result))
+                maleState.value = true
+                femaleState.value = false
             },
-            modifier = Modifier.fillMaxWidth().padding(top = 16.dp)
+            modifier = Modifier
+                .padding(end = 8.dp)
+                .weight(1f)
+        )
+        RoundedToggleButton(
+            state = femaleState,
+            text = stringResource(id = R.string.female),
+            onClick = {
+                femaleState.value = true
+                maleState.value = false
+            },
+            modifier = Modifier
+                .padding(start = 8.dp)
+                .weight(1f)
         )
     }
+    val heightState = remember { mutableStateOf(170) }
+    val weightState: MutableState<Int> = remember { mutableStateOf(62) }
+    val ageState: MutableState<Int> = remember { mutableStateOf(20) }
+
+    PickerView(
+        modifier = Modifier
+            .weight(1f)
+            .fillMaxWidth()
+            .padding(top = 16.dp),
+        heightState = heightState,
+        weightState = weightState,
+        ageState = ageState
+    )
+
+    RoundedButton(
+        text = stringResource(id = R.string.begin),
+        onClick = {
+            val bmi = BmiCalculator(
+                heightState.value,
+                weightState.value
+            )
+            navigateTo(Screen.Result(bmi.result))
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp)
+    )
 }
 
 @Composable
@@ -128,44 +128,41 @@ private fun PickerView(
     heightState: MutableState<Int>,
     weightState: MutableState<Int>,
     ageState: MutableState<Int>
+) = Column(
+    modifier = modifier,
+    verticalArrangement = Arrangement.SpaceEvenly
 ) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.SpaceEvenly
+    HeightSelector(
+        modifier = Modifier
+            .weight(1f)
+            .align(Alignment.CenterHorizontally)
+            .padding(bottom = 8.dp)
+            .fillMaxHeight(),
+        heightState = heightState
+    )
+    Row(
+        modifier = Modifier
+            .weight(1f)
+            .fillMaxHeight()
+            .padding(top = 8.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-
-        HeightSelector(
+        NumberPicker(
+            label = stringResource(id = R.string.lbl_weight),
             modifier = Modifier
                 .weight(1f)
-                .align(Alignment.CenterHorizontally)
-                .padding(bottom = 8.dp)
+                .padding(end = 8.dp)
                 .fillMaxHeight(),
-            heightState = heightState
+            pickerState = weightState
         )
-        Row(
+        NumberPicker(
+            label = stringResource(id = R.string.lbl_age),
             modifier = Modifier
                 .weight(1f)
-                .fillMaxHeight()
-                .padding(top = 8.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            NumberPicker(
-                label = stringResource(id = R.string.lbl_weight),
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 8.dp)
-                    .fillMaxHeight(),
-                pickerState = weightState
-            )
-            NumberPicker(
-                label = stringResource(id = R.string.lbl_age),
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 8.dp)
-                    .fillMaxHeight(),
-                pickerState = ageState
-            )
-        }
+                .padding(start = 8.dp)
+                .fillMaxHeight(),
+            pickerState = ageState
+        )
     }
 }
 
@@ -195,7 +192,9 @@ private fun HeightSelector(
             Slider(
                 value = heightState.value.toFloat(),
                 onValueChange = { heightState.value = it.toInt() },
-                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
                 valueRange = (1f..272f),
                 activeTrackColor = accentColor
             )
@@ -214,48 +213,42 @@ private fun NumberPicker(
     modifier: Modifier = Modifier,
     pickerState: MutableState<Int>,
     range: IntRange = 1..100
-) {
-    RoundedCard(modifier = modifier) {
-        Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.Center
+) = RoundedCard(modifier = modifier) {
+    Column(
+        modifier = Modifier,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = label,
+            style = LabelStyle,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
+        Text(
+            text = pickerState.value.toString(),
+            style = ValueStyle,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
-            Text(
-                text = label,
-                style = LabelStyle,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-            Text(
-                text = pickerState.value.toString(),
-                style = ValueStyle,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            ) {
-                RoundIconButton(vectorAsset = Icons.Default.Add, onClick = {
-                    if (pickerState.value < range.last) {
-                        pickerState.value = pickerState.value + 1
-                    }
-                })
-                RoundIconButton(vectorAsset = Icons.Default.Remove, onClick = {
-                    if (pickerState.value > range.first) {
-                        pickerState.value = pickerState.value - 1
-                    }
-                })
-            }
+            RoundIconButton(vectorAsset = Icons.Default.Add, onClick = {
+                if (pickerState.value < range.last) {
+                    pickerState.value = pickerState.value + 1
+                }
+            })
+            RoundIconButton(vectorAsset = Icons.Default.Remove, onClick = {
+                if (pickerState.value > range.first) {
+                    pickerState.value = pickerState.value - 1
+                }
+            })
         }
     }
 }
 
 @Preview
 @Composable
-private fun ScreenPreview() {
-    AppTheme {
-        HomeScreen()
-    }
-}
+private fun ScreenPreview() = AppTheme { HomeScreen() }
 
 private val LabelStyle = TextStyle(
     color = Color.Black.copy(alpha = 0.6f),
@@ -266,5 +259,3 @@ private val ValueStyle = TextStyle(
     color = Color.Black.copy(alpha = 0.9f),
     fontSize = TextUnit.Sp(32)
 )
-
-//private val ColumnChildModifier = Modifier.gravity(Alignment.CenterHorizontally).padding(8.dp)
