@@ -33,6 +33,8 @@ import com.bmi.compose.ui.screens.PersonalDetails.Weight
 import com.bmi.compose.ui.widgets.*
 import com.bmi.compose.util.BmiCalculator
 import com.vhi.bmicomposeinnovation.R
+import com.vhi.bmicomposeinnovation.R.string.unit_age
+import com.vhi.bmicomposeinnovation.R.string.unit_weight
 
 @Composable
 fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffold(
@@ -241,8 +243,8 @@ private fun NumberPicker(
         )
         Text(
             text = when(type){
-                is Weight-> pickerState.value.toString() + stringResource(id = R.string.unit_weight)
-                is Age -> pickerState.value.toString() + stringResource(id = R.string.unit_age)
+                is Weight-> pickerState.value.toString() + stringResource(unit_weight)
+                is Age -> pickerState.value.toString() + stringResource(unit_age)
             },
             style = ValueStyle,
             modifier = Modifier.align(CenterHorizontally)
