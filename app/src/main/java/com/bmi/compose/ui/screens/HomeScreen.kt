@@ -1,3 +1,5 @@
+@file:Suppress("IMPLICIT_CAST_TO_ANY")
+
 package com.bmi.compose.ui.screens
 
 import androidx.compose.foundation.layout.*
@@ -232,6 +234,22 @@ private fun NumberPicker(
     pickerState: MutableState<Int>,
     range: IntRange = 1..100
 ) = RoundedCard(modifier = modifier) {
+
+    val value = when(type){
+        is Weight-> annotatedString {
+            withStyle(
+                style = SpanStyle(fontSize = TextUnit.Sp(32))
+            ) { append(pickerState.value.toString()) }
+            append(stringResource(id = R.string.unit_weight))
+        }
+        is Age -> annotatedString {
+            withStyle(
+                style = SpanStyle(fontSize = TextUnit.Sp(32))
+            ) { append(pickerState.value.toString()) }
+            append(stringResource(id = R.string.unit_age))
+        }
+    }
+
     Column(
         modifier = Modifier,
         verticalArrangement = Center
@@ -242,10 +260,7 @@ private fun NumberPicker(
             modifier = Modifier.align(CenterHorizontally)
         )
         Text(
-            text = when(type){
-                is Weight-> pickerState.value.toString() + stringResource(unit_weight)
-                is Age -> pickerState.value.toString() + stringResource(unit_age)
-            },
+            text = value,
             style = ValueStyle,
             modifier = Modifier.align(CenterHorizontally)
         )
