@@ -7,7 +7,7 @@
     <string name="about_app">About App</string>
     <string name="male">MALE</string>
     <string name="female">FEMALE</string>
-    <string name="begin">LET\'S BEGIN</string>
+    <string name="submit_bmi">LET\'S BEGIN</string>
     <string name="lbl_weight">Weight</string>
     <string name="lbl_age">Age</string>
     <string name="unit_cm">cm</string>

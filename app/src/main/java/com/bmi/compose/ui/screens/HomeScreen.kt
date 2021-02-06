@@ -23,7 +23,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.annotatedString
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnit.Companion.Sp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.Screen
@@ -47,25 +47,13 @@ fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffol
             color = accentColor,
             elevation = 10.dp,
 
-            navigationIcon = {
-                RoundIconButton(
-                    vectorAsset = Icons.Outlined.Notifications,
-                    onClick = { navigateTo(Screen.Tips) }
-                )
-            },
-        )
-
-//        Toolbar(
-//            title = stringResource(id = R.string.app_name),
 //            navigationIcon = {
 //                RoundIconButton(
 //                    vectorAsset = Icons.Outlined.Notifications,
 //                    onClick = { navigateTo(Screen.Tips) }
 //                )
 //            },
-//            actions = { RoundIconButton(Icons.Outlined.Person, onClick = { }) },
-//            elevation = 10.dp
-//        )
+        )
     },
     bodyContent = { Content() }
 )
@@ -73,7 +61,7 @@ fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffol
 @Composable
 private fun Content() = Column(
     modifier = Modifier
-        .padding(16.dp)
+        .padding(8.dp)
         .fillMaxSize(),
     verticalArrangement = SpaceAround
 ) {
@@ -95,7 +83,7 @@ private fun Content() = Column(
                 femaleState.value = false
             },
             modifier = Modifier
-                .padding(end = 8.dp)
+                .padding(end = 4.dp)
                 .weight(1f)
         )
         RoundedToggleButton(
@@ -106,7 +94,7 @@ private fun Content() = Column(
                 maleState.value = false
             },
             modifier = Modifier
-                .padding(start = 8.dp)
+                .padding(start = 4.dp, end = 4.dp)
                 .weight(1f)
         )
     }
@@ -119,14 +107,14 @@ private fun Content() = Column(
         modifier = Modifier
             .weight(1f)
             .fillMaxWidth()
-            .padding(top = 16.dp),
+            .padding(top = 4.dp),
         heightState = heightState,
         weightState = weightState,
         ageState = ageState
     )
 
     RoundedButton(
-        text = stringResource(id = R.string.begin),
+        text = stringResource(id = R.string.submit_bmi),
         onClick = {
             val bmi = BmiCalculator(
                 heightState.value,
@@ -136,7 +124,7 @@ private fun Content() = Column(
         },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp)
+            .padding(top = 16.dp, bottom = 4.dp)
     )
 }
 
@@ -150,11 +138,12 @@ private fun PickerView(
     modifier = modifier,
     verticalArrangement = SpaceEvenly
 ) {
+
     HeightSelector(
         modifier = Modifier
             .weight(1f)
             .align(CenterHorizontally)
-            .padding(bottom = 8.dp)
+            .padding(start = 2.dp, bottom = 8.dp, end = 2.dp)
             .fillMaxHeight(), heightState = heightState
     )
     Row(
@@ -164,12 +153,13 @@ private fun PickerView(
             .padding(top = 8.dp),
         horizontalArrangement = SpaceEvenly
     ) {
+
         NumberPicker(
             type = Weight,
             label = stringResource(id = R.string.lbl_weight),
             modifier = Modifier
                 .weight(1f)
-                .padding(end = 8.dp)
+                .padding(start = 2.dp, end = 8.dp)
                 .fillMaxHeight(),
             pickerState = weightState
         )
@@ -178,7 +168,7 @@ private fun PickerView(
             label = stringResource(id = R.string.lbl_age),
             modifier = Modifier
                 .weight(1f)
-                .padding(start = 8.dp)
+                .padding(start = 8.dp, end = 2.dp)
                 .fillMaxHeight(),
             pickerState = ageState
         )
@@ -192,7 +182,7 @@ private fun HeightSelector(
 ) {
     val height = annotatedString {
         withStyle(
-            style = SpanStyle(fontSize = TextUnit.Sp(32))
+            style = SpanStyle(fontSize = Sp(32))
         ) { append(heightState.value.toString()) }
         append(stringResource(id = R.string.unit_cm))
     }
@@ -236,17 +226,18 @@ private fun NumberPicker(
 ) = RoundedCard(modifier = modifier) {
 
     val value = when(type){
+
         is Weight-> annotatedString {
             withStyle(
-                style = SpanStyle(fontSize = TextUnit.Sp(32))
+                style = SpanStyle(fontSize = Sp(32))
             ) { append(pickerState.value.toString()) }
-            append(stringResource(id = R.string.unit_weight))
+            append(stringResource(unit_weight))
         }
         is Age -> annotatedString {
             withStyle(
-                style = SpanStyle(fontSize = TextUnit.Sp(32))
+                style = SpanStyle(fontSize = Sp(32))
             ) { append(pickerState.value.toString()) }
-            append(stringResource(id = R.string.unit_age))
+            append(stringResource(unit_age))
         }
     }
 
@@ -261,7 +252,7 @@ private fun NumberPicker(
         )
         Text(
             text = value,
-            style = ValueStyle,
+            style = textStyle,
             modifier = Modifier.align(CenterHorizontally)
         )
         Row(
@@ -293,10 +284,10 @@ private fun ScreenPreview() = AppTheme { HomeScreen() }
 
 private val LabelStyle = TextStyle(
     color = Color.Black.copy(alpha = 0.6f),
-    fontSize = TextUnit.Sp(18)
+    fontSize = Sp(18)
 )
 
 private val ValueStyle = TextStyle(
     color = Color.Black.copy(alpha = 0.9f),
-    fontSize = TextUnit.Sp(32)
+    fontSize = Sp(32)
 )
