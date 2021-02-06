@@ -1,6 +1,9 @@
 package com.bmi.compose.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.Center
+import androidx.compose.foundation.layout.Arrangement.SpaceAround
+import androidx.compose.foundation.layout.Arrangement.SpaceEvenly
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -12,6 +15,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -46,7 +50,7 @@ fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffol
                     onClick = { navigateTo(Screen.Tips) }
                 )
             },
-            actions = { RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { }) },
+            actions = { RoundIconButton(Icons.Outlined.Person, onClick = { }) },
             elevation = 10.dp
         )
     },
@@ -58,13 +62,13 @@ private fun Content() = Column(
     modifier = Modifier
         .padding(16.dp)
         .fillMaxSize(),
-    verticalArrangement = Arrangement.SpaceAround
+    verticalArrangement = SpaceAround
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = SpaceEvenly
     ) {
 
         val maleState = mutableStateOf(true)
@@ -93,6 +97,7 @@ private fun Content() = Column(
                 .weight(1f)
         )
     }
+
     val heightState = remember { mutableStateOf(170) }
     val weightState: MutableState<Int> = remember { mutableStateOf(62) }
     val ageState: MutableState<Int> = remember { mutableStateOf(20) }
@@ -130,12 +135,12 @@ private fun PickerView(
     ageState: MutableState<Int>
 ) = Column(
     modifier = modifier,
-    verticalArrangement = Arrangement.SpaceEvenly
+    verticalArrangement = SpaceEvenly
 ) {
     HeightSelector(
         modifier = Modifier
             .weight(1f)
-            .align(Alignment.CenterHorizontally)
+            .align(CenterHorizontally)
             .padding(bottom = 8.dp)
             .fillMaxHeight(),
         heightState = heightState
@@ -145,7 +150,7 @@ private fun PickerView(
             .weight(1f)
             .fillMaxHeight()
             .padding(top = 8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = SpaceEvenly
     ) {
         NumberPicker(
             label = stringResource(id = R.string.lbl_weight),
@@ -181,12 +186,12 @@ private fun HeightSelector(
     RoundedCard(modifier = modifier) {
         Column(
             modifier = Modifier.fillMaxHeight(),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Center
         ) {
 
             Text(
                 text = stringResource(id = R.string.lbl_height),
-                modifier = Modifier.align(Alignment.CenterHorizontally),
+                modifier = Modifier.align(CenterHorizontally),
                 style = LabelStyle
             )
             Slider(
@@ -200,7 +205,7 @@ private fun HeightSelector(
             )
             Text(
                 text = height,
-                modifier = Modifier.align(Alignment.CenterHorizontally),
+                modifier = Modifier.align(CenterHorizontally),
                 style = textStyle
             )
         }
@@ -216,21 +221,21 @@ private fun NumberPicker(
 ) = RoundedCard(modifier = modifier) {
     Column(
         modifier = Modifier,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Center
     ) {
         Text(
             text = label,
             style = LabelStyle,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(CenterHorizontally)
         )
         Text(
             text = pickerState.value.toString(),
             style = ValueStyle,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(CenterHorizontally)
         )
         Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            horizontalArrangement = SpaceEvenly,
+            modifier = Modifier.align(CenterHorizontally)
         ) {
             RoundIconButton(vectorAsset = Icons.Default.Add, onClick = {
                 if (pickerState.value < range.last) {
