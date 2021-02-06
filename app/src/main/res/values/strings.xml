@@ -22,4 +22,5 @@
     <string name="normal_result_weight">Your weight is normal</string>
     <string name="normal_top_bar_result">Great!</string>
     <string name="your_bmi_prepend">Your BMI = </string>
+    <string name="home_title">BMI</string>
 </resources>

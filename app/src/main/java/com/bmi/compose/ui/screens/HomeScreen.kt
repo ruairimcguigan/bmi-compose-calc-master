@@ -43,7 +43,7 @@ fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffol
     scaffoldState = scaffoldState,
     topBar = {
         VhiToolbar(
-            title = "BMI",
+            title = stringResource(R.string.home_title),
             color = accentColor,
             elevation = 10.dp,
 

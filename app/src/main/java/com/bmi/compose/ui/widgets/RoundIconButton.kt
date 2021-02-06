@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.theme.AppTheme
+import com.bmi.compose.theme.accentColor
 
 private val RippleRadius = 24.dp
 private val IconButtonSizeModifier = Modifier.preferredSize(40.dp)
@@ -26,7 +27,7 @@ fun RoundIconButton(
     vectorAsset: VectorAsset,
     onClick: () -> Unit,
     modifier: Modifier = Modifier.padding(8.dp),
-    tint: Color = Color.Black.copy(alpha = 0.8f),
+    tint: Color = accentColor,
     backgroundColor: Color = MaterialTheme.colors.background,
     elevation: Dp = 4.dp
 ) {
