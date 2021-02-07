@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.theme.AppTheme
+import com.bmi.compose.theme.accentColor
 import com.bmi.compose.theme.backgroundColor
 import com.bmi.compose.theme.purple500
 import com.vhi.bmicomposeinnovation.R
@@ -24,11 +25,11 @@ import com.vhi.bmicomposeinnovation.R
 @Composable
 fun Toolbar(
     title: String,
-    color: Color = purple500,
+    color: Color = Color.White,
     elevation: Dp,
     navigationIcon: @Composable (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
-    toolbarBackground: Color = purple500
+    toolbarBackground: Color = accentColor
 ) {
     TopAppBar(
         title = {
