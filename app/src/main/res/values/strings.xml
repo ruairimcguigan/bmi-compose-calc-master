@@ -16,7 +16,7 @@
     <string name="lbl_height">Height</string>
     <string name="result_more_info">More info</string>
     <string name="normal_result_maintain_message">To maintain your healthy weight:</string>
-    <string name="underweight_result_maintain_title">Your result suggests you are</string>
+    <string name="result_title">Your result suggests you are</string>
     <string name="underweight_result_maintain_subtitle">Underweight</string>
     <string name="normal_result_maintain_subtitle">Normal weight</string>
     <string name="overweight_result_maintain_subtitle">Overweight</string>

@@ -32,7 +32,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.*
@@ -63,7 +62,7 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
 
     is Underweight -> BMIResult(
         resultBackgroundColor = UnderWeightColor,
-        resultTitle = underweight_result_maintain_title,
+        resultTitle = result_title,
         resultSubtitle = underweight_result_maintain_subtitle,
         adviceOne = Pair(underweight_result_advice_one_message, Icons.Outlined.Info),
         adviceTwo = Pair(underweight_result_advice_two_message, Icons.Outlined.Info),
@@ -73,8 +72,8 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
 
     is NormalWeight -> BMIResult(
         resultBackgroundColor = NormalWeightColor,
-        resultTitle = normal_result_maintain_subtitle,
-        resultSubtitle = normal_result_maintain_message,
+        resultTitle = result_title,
+        resultSubtitle = normal_result_maintain_subtitle,
         adviceOne = Pair(normal_result_advice_one_message, Icons.Outlined.Info),
         adviceTwo = Pair(normal_result_advice_two_message, Icons.Outlined.Info),
         adviceThree = Pair(normal_result_advice_three_message, Icons.Outlined.Info),
@@ -83,8 +82,8 @@ private fun Content(viewState: ResultViewState) = when (viewState) {
 
     is Overweight -> BMIResult(
         resultBackgroundColor = Red900,
-        resultTitle = overweight_top_bar_result,
-        resultSubtitle = normal_result_maintain_subtitle,
+        resultTitle = result_title,
+        resultSubtitle = overweight_result_maintain_subtitle,
         adviceOne = Pair(overweight_result_advice_one_message, Icons.Outlined.Info),
         adviceTwo = Pair(overweight_result_advice_two_message, Icons.Outlined.Info),
         adviceThree = Pair(overweight_result_advice_three_message, Icons.Outlined.Info),
@@ -129,7 +128,7 @@ private fun BMIResult(
             ) {
                 Box(
                     modifier = Modifier
-                        .background(NormalWeightColor, CircleShape)
+                        .background(resultBackgroundColor, CircleShape)
                         .preferredSize(112.dp)
                         .padding(8.dp),
                     alignment = Alignment.Center
