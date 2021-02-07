@@ -10,7 +10,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -27,6 +26,7 @@ import androidx.compose.ui.unit.TextUnit.Companion.Sp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.Screen
+import com.bmi.compose.Screen.*
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.accentColor
@@ -34,6 +34,7 @@ import com.bmi.compose.ui.screens.PersonalDetails.Age
 import com.bmi.compose.ui.screens.PersonalDetails.Weight
 import com.bmi.compose.ui.widgets.*
 import com.bmi.compose.util.BmiCalculator
+import com.bmi.compose.util.BmiCalculator.ResultViewState.*
 import com.vhi.bmicomposeinnovation.R
 import com.vhi.bmicomposeinnovation.R.string.unit_age
 import com.vhi.bmicomposeinnovation.R.string.unit_weight
@@ -120,7 +121,12 @@ private fun Content() = Column(
                 heightState.value,
                 weightState.value
             )
-            navigateTo(Screen.Result(bmi.result))
+
+            when(bmi.result){
+                is Underweight -> navigateTo(UnderweightScreen(bmi.result))
+                is NormalWeight -> navigateTo(NormalScreen(bmi.result))
+                is Overweight -> navigateTo(OverweightScreen(bmi.result))
+            }
         },
         modifier = Modifier
             .fillMaxWidth()

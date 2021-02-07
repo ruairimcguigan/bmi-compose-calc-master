@@ -9,7 +9,9 @@ import com.bmi.compose.util.BmiCalculator.ResultViewState
 sealed class Screen {
     object Home : Screen()
     data class Info(val bmi: BmiCalculator) : Screen()
-    data class Result(val bmi: ResultViewState) : Screen()
+    data class NormalScreen(val bmi: ResultViewState) : Screen()
+    data class UnderweightScreen(val bmi: ResultViewState) : Screen()
+    data class OverweightScreen(val bmi: ResultViewState) : Screen()
     object Tips : Screen()
 }
 

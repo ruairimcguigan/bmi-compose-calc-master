@@ -23,7 +23,7 @@ import androidx.ui.tooling.preview.Preview
 //<color name="colorAccent2">@color/colorRed</color>
 
 val NormalWeightColor = Color(0xFF2ABB9A)
-val UnderWeightColor = Color(0xFFFFC107)
+val UnderWeightColor = Color(0xFFE7B00B)
 
 val Red200 = Color(0xfff297a2)
 val Red300 = Color(0xffea6d7e)

@@ -21,6 +21,8 @@ import androidx.ui.tooling.preview.Preview
 import com.bmi.compose.ui.widgets.EmptyHeight2
 import com.bmi.compose.ui.widgets.Toolbar
 import com.bmi.compose.Screen
+import com.bmi.compose.Screen.NormalScreen
+import com.bmi.compose.Screen.UnderweightScreen
 import com.bmi.compose.navigateTo
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.accentColor
@@ -49,7 +51,14 @@ fun InfoScreen(
                 navigationIcon = {
                     RoundIconButton(
                         vectorAsset = Icons.Outlined.ArrowBack,
-                        onClick = { navigateTo(Screen.Result(bmi)) }
+                        onClick = {
+                            when(bmi){
+                                is Underweight -> navigateTo(UnderweightScreen(bmi))
+                                is NormalWeight -> navigateTo(NormalScreen(bmi))
+                                is Overweight -> TODO()
+                            }
+
+                        }
                     )
                 },
                 actions = { RoundIconButton(vectorAsset = Icons.Outlined.Person, onClick = { }) },

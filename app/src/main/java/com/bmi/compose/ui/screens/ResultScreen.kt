@@ -1,23 +1,27 @@
 package com.bmi.compose.ui.screens
 
+import androidx.annotation.ColorRes
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.SpaceAround
+import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.EmojiObjects
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.ContentScale.Companion.Fit
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.annotatedString
@@ -28,12 +32,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bmi.compose.Screen
 import com.bmi.compose.navigateTo
-import com.bmi.compose.theme.NormalWeightColor
-import com.bmi.compose.theme.UnderWeightColor
-import com.bmi.compose.theme.accentColor
-import com.bmi.compose.theme.foregroundColor
+import com.bmi.compose.theme.*
 import com.bmi.compose.ui.widgets.RoundIconButton
 import com.bmi.compose.ui.widgets.RoundedButton
 import com.bmi.compose.ui.widgets.Toolbar
@@ -41,8 +43,7 @@ import com.bmi.compose.util.BmiCalculator
 import com.bmi.compose.util.BmiCalculator.ResultViewState
 import com.bmi.compose.util.BmiCalculator.ResultViewState.*
 import com.vhi.bmicomposeinnovation.R
-import com.vhi.bmicomposeinnovation.R.string.normal_result_maintain_message
-import com.vhi.bmicomposeinnovation.R.string.underweight_result_maintain_message
+import com.vhi.bmicomposeinnovation.R.string.*
 
 @Composable
 fun ResultScreen(
@@ -60,28 +61,46 @@ fun ResultScreen(
 @Composable
 private fun Content(viewState: ResultViewState) = when (viewState) {
 
-    is NormalWeight -> BMIResult(
-        resultBackgroundColor = NormalWeightColor,
-        resultMessage = stringResource(normal_result_maintain_message),
-        viewState = viewState
-    )
-
     is Underweight -> BMIResult(
         resultBackgroundColor = UnderWeightColor,
-        resultMessage = stringResource(underweight_result_maintain_message),
+        resultTitle = underweight_result_maintain_title,
+        resultSubtitle = underweight_result_maintain_subtitle,
+        adviceOne = Pair(underweight_result_advice_one_message, Icons.Outlined.Info),
+        adviceTwo = Pair(underweight_result_advice_two_message, Icons.Outlined.Info),
+        adviceThree = Pair(underweight_result_advice_three_message, Icons.Outlined.Info),
         viewState = viewState
     )
 
-    is Overweight -> {
-    }
-    is Preview -> {
-    }
+    is NormalWeight -> BMIResult(
+        resultBackgroundColor = NormalWeightColor,
+        resultTitle = normal_result_maintain_subtitle,
+        resultSubtitle = normal_result_maintain_message,
+        adviceOne = Pair(normal_result_advice_one_message, Icons.Outlined.Info),
+        adviceTwo = Pair(normal_result_advice_two_message, Icons.Outlined.Info),
+        adviceThree = Pair(normal_result_advice_three_message, Icons.Outlined.Info),
+        viewState = viewState
+    )
+
+    is Overweight -> BMIResult(
+        resultBackgroundColor = Red900,
+        resultTitle = overweight_top_bar_result,
+        resultSubtitle = normal_result_maintain_subtitle,
+        adviceOne = Pair(overweight_result_advice_one_message, Icons.Outlined.Info),
+        adviceTwo = Pair(overweight_result_advice_two_message, Icons.Outlined.Info),
+        adviceThree = Pair(overweight_result_advice_three_message, Icons.Outlined.Info),
+        viewState = viewState
+    )
+    is Preview -> { }
 }
 
 @Composable
 private fun BMIResult(
-    resultBackgroundColor: Color,
-    resultMessage: String,
+    @ColorRes resultBackgroundColor: Color,
+    @StringRes resultTitle: Int,
+    @StringRes resultSubtitle: Int = 0,
+    adviceOne: Pair<Int, VectorAsset>,
+    adviceTwo: Pair<Int, VectorAsset>,
+    adviceThree: Pair<Int, VectorAsset>,
     viewState: ResultViewState
 ) {
 
@@ -131,7 +150,7 @@ private fun BMIResult(
         ) {
             BasicText(
                 text = annotatedString {
-                    append(stringResource(R.string.your_bmi_prepend))
+                    append(stringResource(your_bmi_prepend))
                     withStyle(
                         style = SpanStyle(
                             color = foregroundColor,
@@ -156,7 +175,7 @@ private fun BMIResult(
         ) {
 
             BasicText(
-                text = resultMessage,
+                text = stringResource( resultTitle),
                 style = TextStyle(
                     fontWeight = Medium,
                     color = foregroundColor,
@@ -164,21 +183,24 @@ private fun BMIResult(
                 ),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
-                    .padding(16.dp)
+                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
             )
 
-            RowAdvice(
-                resId = R.drawable.stay_active,
-                advice = stringResource(R.string.advice_stay_active)
+            BasicText(
+                text = stringResource(resultSubtitle),
+                style = TextStyle(
+                    fontWeight = Medium,
+                    color = foregroundColor,
+                    fontSize = TextUnit.Sp(22),
+                ),
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
             )
-            RowAdvice(
-                resId = R.drawable.no_junk_food,
-                advice = stringResource(R.string.advice_healthy_diet)
-            )
-            RowAdvice(
-                resId = R.drawable.sleep_well,
-                advice = stringResource(R.string.advice_sufficient_sleep)
-            )
+
+            RowAdvice(advice = adviceOne.first, icon = adviceOne.second)
+            RowAdvice(advice = adviceTwo.first, icon = adviceTwo.second)
+            RowAdvice(advice = adviceThree.first, icon = adviceThree.second)
         }
 
         // details button
@@ -195,15 +217,18 @@ private fun BMIResult(
 }
 
 @Composable
-fun RowAdvice(resId: Int, advice: String) {
+fun RowAdvice(icon: VectorAsset, advice: Int) {
     Row(
-        horizontalArrangement = SpaceAround,
+        horizontalArrangement = SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(start = 24.dp, top = 6.dp, bottom = 6.dp)
     ) {
-        Image(vectorResource(resId), contentScale = Fit)
+        Image(icon, contentScale = Fit)
 
-        Text(modifier = Modifier.padding(start = 12.dp), text = advice)
+        Text(modifier = Modifier.padding(start = 12.dp),
+            text = stringResource(advice),
+            fontSize = TextUnit.Sp(16)
+        )
     }
 }
 

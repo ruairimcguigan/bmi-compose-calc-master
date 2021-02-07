@@ -11,11 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.bmi.compose.Screen.Home
-import com.bmi.compose.Screen.Info
-import com.bmi.compose.Screen.Result
+import com.bmi.compose.Screen.*
 import com.bmi.compose.theme.AppTheme
 import com.bmi.compose.theme.NormalWeightColor
+import com.bmi.compose.theme.Red900
+import com.bmi.compose.theme.UnderWeightColor
 import com.bmi.compose.ui.screens.*
 import com.bmi.compose.ui.widgets.RoundIconButton
 import com.vhi.bmicomposeinnovation.R
@@ -52,7 +52,23 @@ fun AppContent() {
             when (screen) {
                 is Home -> HomeScreen()
                 is Info -> InfoScreen(bmi = screen.bmi.result)
-                is Result -> ResultScreen(
+                is UnderweightScreen -> ResultScreen(
+                        bmi = screen.bmi,
+                        toolbar = {
+                            VhiToolbar(
+                                title = stringResource(R.string.underweight_top_bar_result),
+                                color = UnderWeightColor,
+                                navigationIcon = {
+                                    RoundIconButton(
+                                        vectorAsset = Icons.Outlined.ArrowBack,
+                                        onClick = { navigateTo(Home) }
+                                    )
+                                },
+                                elevation = 0.dp
+                            )
+                        }
+                    )
+                is NormalScreen -> ResultScreen(
                     bmi = screen.bmi,
                     toolbar = {
                         VhiToolbar(
@@ -64,11 +80,27 @@ fun AppContent() {
                                     onClick = { navigateTo(Home) }
                                 )
                             },
-                            elevation = 10.dp
+                            elevation = 0.dp
                         )
                     }
                 )
-                is Screen.Tips -> TipsScreen()
+                is OverweightScreen -> ResultScreen(
+                    bmi = screen.bmi,
+                    toolbar = {
+                        VhiToolbar(
+                            title = stringResource(R.string.overweight_top_bar_result),
+                            color = Red900,
+                            navigationIcon = {
+                                RoundIconButton(
+                                    vectorAsset = Icons.Outlined.ArrowBack,
+                                    onClick = { navigateTo(Home) }
+                                )
+                            },
+                            elevation = 0.dp
+                        )
+                    }
+                )
+                is Tips -> TipsScreen()
             }
         }
     }
