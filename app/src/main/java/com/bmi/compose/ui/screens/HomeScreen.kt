@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -48,12 +49,7 @@ fun HomeScreen(scaffoldState: ScaffoldState = rememberScaffoldState()) = Scaffol
             color = accentColor,
             elevation = 10.dp,
 
-//            navigationIcon = {
-//                RoundIconButton(
-//                    vectorAsset = Icons.Outlined.Notifications,
-//                    onClick = { navigateTo(Screen.Tips) }
-//                )
-//            },
+
         )
     },
     bodyContent = { Content() }

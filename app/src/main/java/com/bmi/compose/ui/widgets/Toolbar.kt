@@ -65,21 +65,3 @@ fun ToolbarPreview() {
         )
     }
 }
-
-//@Preview
-//@Composable
-//fun ToolBarGradient() {
-//    Box(
-//        modifier = Modifier
-//            .preferredSize(500.dp, 500.dp)
-//            .background(
-//                HorizontalGradient(
-//                    0.0f to Color.Red,
-//                    0.5f to Color.Green,
-//                    1.0f to Color.Blue,
-//                    startX = 0.dp,
-//                    endX = 500.dp
-//                )
-//            )
-//    )
-//}

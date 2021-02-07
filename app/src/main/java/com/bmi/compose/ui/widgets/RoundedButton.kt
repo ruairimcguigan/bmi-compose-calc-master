@@ -42,7 +42,7 @@ fun RoundedButton(
         BasicText(
             text = text,
             style = TextStyle(
-                color = backgroundColor,
+                color = contentColor,
                 fontSize = TextUnit.Companion.Sp(18)) )
     }
 }

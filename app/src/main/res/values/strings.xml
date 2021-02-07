@@ -27,6 +27,8 @@
     <string name="your_bmi_prepend">Your BMI = </string>
     <string name="home_title">BMI</string>
 
+    <string name="view_all_bmi_ranges">VIEW BMI RANGES</string>
+
     <string name="underweight_result_advice_one_message">Eat more frequently.</string>
     <string name="underweight_result_advice_two_message">Choose nutrient-rich foods.</string>
     <string name="underweight_result_advice_three_message">Make every bite count.</string>

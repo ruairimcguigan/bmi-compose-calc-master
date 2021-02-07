@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.Center
 import androidx.compose.foundation.layout.Arrangement.SpaceAround
 import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.foundation.shape.CircleShape
@@ -202,16 +203,28 @@ private fun BMIResult(
             RowAdvice(advice = adviceThree.first, icon = adviceThree.second)
         }
 
-        // details button
         RoundedButton(
-            text = stringResource(R.string.result_more_info),
-            onClick = { navigateTo(Screen.Info(bmiValueState)) },
+            text = stringResource(view_all_bmi_ranges),
+            onClick = {
+                navigateTo(Screen.Info(bmiValueState))
+            },
+            backGroundColor = Color.White,
+            contentColor = resultBackgroundColor,
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .preferredWidth(120.dp),
-            backGroundColor = MaterialTheme.colors.background,
-            contentColor = Color.Black.copy(alpha = 0.8f)
+                .fillMaxWidth(0.7f).align(Alignment.CenterHorizontally)
+                .padding(top = 16.dp, bottom = 4.dp)
         )
+
+        // details button
+//        RoundedButton(
+//            text = stringResource(R.string.result_more_info),
+//            onClick = { navigateTo(Screen.Info(bmiValueState)) },
+//            modifier = Modifier
+//                .align(Alignment.CenterHorizontally)
+//                .preferredWidth(120.dp),
+//            backGroundColor = MaterialTheme.colors.background,
+//            contentColor = Color.Black.copy(alpha = 0.8f),
+//        )
     }
 }
 
